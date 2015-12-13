@@ -2,7 +2,7 @@
 
 field::field()
 {
-    srand( time( 0 ) );
+    srand(time(0));
 
     fieldLength = 20;
     fieldWidth = 40;
@@ -20,26 +20,26 @@ field::field()
     for (int i = 0; i < fieldLength; i++)
         for (int j = 0; j < fieldWidth; j++)
             if(i == 0 || j == 0 || i == fieldLength - 1 || j == fieldWidth - 1)
-                _field[i][j] = WALL;
+                _field[i][j] = cell::WALL;
             else
-                _field[i][j] = BLANK;
+                _field[i][j] = cell::BLANK;
 
-    _field[fieldLength/2 - 1][0] = BLANK;
-    _field[fieldLength/2 - 1][fieldWidth - 1] =  BLANK;
-    _field[fieldLength/2][0] =  BLANK;
-    _field[fieldLength/2][fieldWidth - 1] =  BLANK;
-    _field[fieldLength/2 + 1][0] =  BLANK;
-    _field[fieldLength/2 + 1][fieldWidth - 1] =  BLANK;
+    _field[fieldLength/2 - 1][0] = cell::BLANK;
+    _field[fieldLength/2 - 1][fieldWidth - 1] =  cell::BLANK;
+    _field[fieldLength/2][0] =  cell::BLANK;
+    _field[fieldLength/2][fieldWidth - 1] =  cell::BLANK;
+    _field[fieldLength/2 + 1][0] =  cell::BLANK;
+    _field[fieldLength/2 + 1][fieldWidth - 1] =  cell::BLANK;
 
-    _field[0][fieldWidth/2 - 1] =  BLANK;
-    _field[fieldLength - 1][fieldWidth/2 - 1] =  BLANK;
-    _field[0][fieldWidth/2] =  BLANK;
-    _field[fieldLength - 1][fieldWidth/2] =  BLANK;
-    _field[0][fieldWidth/2 + 1] =  BLANK;
-    _field[fieldLength - 1][fieldWidth/2 + 1] =  BLANK;
+    _field[0][fieldWidth/2 - 1] =  cell::BLANK;
+    _field[fieldLength - 1][fieldWidth/2 - 1] =  cell::BLANK;
+    _field[0][fieldWidth/2] =  cell::BLANK;
+    _field[fieldLength - 1][fieldWidth/2] =  cell::BLANK;
+    _field[0][fieldWidth/2 + 1] =  cell::BLANK;
+    _field[fieldLength - 1][fieldWidth/2 + 1] =  cell::BLANK;
 
 
-    _field[1][1] =  SNAKE;
+    _field[1][1] =  cell::SNAKE;
 }
 
 void field::spawnFood()
@@ -51,14 +51,9 @@ void field::spawnFood()
     {
         i = rand() % (fieldLength - 2) + 1;
         j = rand() % (fieldWidth - 2) + 1;
-    } while (_field[i][j] == SNAKE || _field[i][j] == SNAKE_TALE || _field[i][j] == SNAKE_HEAD);
+    } while (_field[i][j] == cell::SNAKE || _field[i][j] == cell::SNAKE_TALE || _field[i][j] == cell::SNAKE_HEAD);
 
-     _field[i][j] = FOOD;
-}
-
-cell field::cellType(int i, int j)
-{
-    return _field[i][j];
+     _field[i][j] = cell::FOOD;
 }
 
 field::~field()

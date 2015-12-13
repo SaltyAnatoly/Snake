@@ -1,8 +1,5 @@
 #include "snake.h"
 
-
-
-
 snake::snake()
 {
     snakeNode snakeHead;
@@ -22,46 +19,25 @@ void snake::snakeMove()
         }
 }
 
-/*
-void snake::snakeControls()
+bool snake::snakeMoving(int keyButton, field myField)
 {
-    std::cout << "Push button which you will use for move up:    ";
-    moveUp = getch();
-    std::cout << static_cast<char>(moveUp) << std::endl;
-
-    std::cout << "Push button which you will use for move left:  ";
-    moveLeft = getch();
-    std::cout << static_cast<char>(moveLeft) << std::endl;
-
-    std::cout << "Push button which you will use for move down:  ";
-    moveDown = getch();
-    std::cout << static_cast<char>(moveDown) << std::endl;
-
-    std::cout << "Push button which you will use for move right: ";
-    moveRight = getch();
-    std::cout << static_cast<char>(moveRight) << std::endl;
-}
-*/
-
-bool snake::snakeMoving(int keyButton, field &myField)
-{
-    if ((keyButton == moveUp || currentDirection == UP) && currentDirection != DOWN)
+    if ((keyButton == moveUp || currentDirection == direction::UP) && currentDirection != direction::DOWN)
     {
         if (_snake[0].iCurrentPosition - 1 < 0)
         {
             snakeMove();
 
             _snake[0].iCurrentPosition = myField.fieldLength - 1;
-            currentDirection = UP;
+            currentDirection = direction::UP;
         }
-        else if (myField._field[_snake[0].iCurrentPosition - 1][_snake[0].jCurrentPosition] == BLANK)
+        else if (myField._field[_snake[0].iCurrentPosition - 1][_snake[0].jCurrentPosition] == cell::BLANK)
         {
             snakeMove();
 
             _snake[0].iCurrentPosition--;
-            currentDirection = UP;
+            currentDirection = direction::UP;
         }
-        else if (myField._field[_snake[0].iCurrentPosition - 1][_snake[0].jCurrentPosition] == FOOD)
+        else if (myField._field[_snake[0].iCurrentPosition - 1][_snake[0].jCurrentPosition] == cell::FOOD)
         {
             snakeMove();
 
@@ -77,33 +53,33 @@ bool snake::snakeMoving(int keyButton, field &myField)
             if (waitTime > 20)
                 waitTime--;
 
-            myField.spawnFood();
+            isSnakeEatTheFood = 1;
 
-            currentDirection = UP;
+            currentDirection = direction::UP;
         }
         else
             return 0;
-    } else if (keyButton == moveUp && currentDirection == DOWN)
-        currentDirection = DOWN;
+    } else if (keyButton == moveUp && currentDirection == direction::DOWN)
+        currentDirection = direction::DOWN;
 
 
-    if ((keyButton == moveDown || currentDirection == DOWN) && currentDirection != UP)
+    if ((keyButton == moveDown || currentDirection == direction::DOWN) && currentDirection != direction::UP)
     {
         if (_snake[0].iCurrentPosition + 1 > myField.fieldLength - 1)
         {
             snakeMove();
 
             _snake[0].iCurrentPosition = 0;
-            currentDirection = DOWN;
+            currentDirection = direction::DOWN;
         }
-        else if (myField._field[_snake[0].iCurrentPosition + 1][_snake[0].jCurrentPosition] == BLANK)
+        else if (myField._field[_snake[0].iCurrentPosition + 1][_snake[0].jCurrentPosition] == cell::BLANK)
         {
             snakeMove();
 
             _snake[0].iCurrentPosition++;
-            currentDirection = DOWN;
+            currentDirection = direction::DOWN;
         }
-        else if (myField._field[_snake[0].iCurrentPosition + 1][_snake[0].jCurrentPosition] == FOOD)
+        else if (myField._field[_snake[0].iCurrentPosition + 1][_snake[0].jCurrentPosition] == cell::FOOD)
         {
             snakeMove();
 
@@ -119,33 +95,33 @@ bool snake::snakeMoving(int keyButton, field &myField)
             if (waitTime > 20)
                 waitTime--;
 
-            myField.spawnFood();
+            isSnakeEatTheFood = 1;
 
-            currentDirection = DOWN;
+            currentDirection = direction::DOWN;
         }
         else
             return 0;
-    } else if (keyButton == moveDown && currentDirection == UP)
-        currentDirection = UP;
+    } else if (keyButton == moveDown && currentDirection == direction::UP)
+        currentDirection = direction::UP;
 
 
-    if ((keyButton == moveLeft || currentDirection == LEFT)  && currentDirection != RIGHT)
+    if ((keyButton == moveLeft || currentDirection == direction::LEFT)  && currentDirection != direction::RIGHT)
     {
         if (_snake[0].jCurrentPosition - 1 < 0)
         {
             snakeMove();
 
             _snake[0].jCurrentPosition = myField.fieldWidth - 1;
-            currentDirection = LEFT;
+            currentDirection = direction::LEFT;
         }
-        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition - 1] == BLANK)
+        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition - 1] == cell::BLANK)
         {
             snakeMove();
 
             _snake[0].jCurrentPosition--;
-            currentDirection = LEFT;
+            currentDirection = direction::LEFT;
         }
-        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition - 1] == FOOD)
+        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition - 1] == cell::FOOD)
         {
             snakeMove();
             snakeNode _snakeNode;
@@ -160,33 +136,33 @@ bool snake::snakeMoving(int keyButton, field &myField)
             if (waitTime > 20)
                 waitTime--;
 
-            myField.spawnFood();
+            isSnakeEatTheFood = 1;
 
-            currentDirection = LEFT;
+            currentDirection = direction::LEFT;
         }
         else
             return 0;
-    } else if (keyButton == moveLeft && currentDirection == RIGHT)
-        currentDirection = RIGHT;
+    } else if (keyButton == moveLeft && currentDirection == direction::RIGHT)
+        currentDirection = direction::RIGHT;
 
 
-    if ((keyButton == moveRight || currentDirection == RIGHT) && currentDirection != LEFT)
+    if ((keyButton == moveRight || currentDirection == direction::RIGHT) && currentDirection != direction::LEFT)
     {
         if (_snake[0].jCurrentPosition + 1 > myField.fieldWidth - 1)
         {
             snakeMove();
 
             _snake[0].jCurrentPosition = 0;
-            currentDirection = RIGHT;
+            currentDirection = direction::RIGHT;
         }
-        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition + 1] == BLANK)
+        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition + 1] == cell::BLANK)
         {
             snakeMove();
 
             _snake[0].jCurrentPosition++;
-            currentDirection = RIGHT;
+            currentDirection = direction::RIGHT;
         }
-        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition + 1] == FOOD)
+        else if (myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition + 1] == cell::FOOD)
         {
             snakeMove();
             snakeNode _snakeNode;
@@ -201,30 +177,14 @@ bool snake::snakeMoving(int keyButton, field &myField)
             if (waitTime > 20)
                 waitTime--;
 
-            myField.spawnFood();
+            isSnakeEatTheFood = 1;
 
-            currentDirection = RIGHT;
+            currentDirection = direction::RIGHT;
         }
         else
             return 0;
-    } else if (keyButton == moveRight && currentDirection == LEFT)
-        currentDirection = LEFT;
-
-
-
-    for (int i = 0; i < myField.fieldLength; i++)
-        for (int j = 0; j < myField.fieldWidth; j++)
-            if (myField._field[i][j] != FOOD && myField._field[i][j] != WALL)
-                myField._field[i][j] = BLANK;
-
-    for (int s = 0; s < snakeLength; s++)
-        myField._field[_snake[s].iCurrentPosition][_snake[s].jCurrentPosition] = SNAKE;
-    myField._field[_snake[0].iCurrentPosition][_snake[0].jCurrentPosition] = SNAKE_HEAD;
-
-    if (snakeLength > 1)
-        myField._field[_snake[snakeLength-1].iCurrentPosition][_snake[snakeLength - 1].jCurrentPosition] = SNAKE_TALE;
-
-    Sleep(waitTime);
+    } else if (keyButton == moveRight && currentDirection == direction::LEFT)
+        currentDirection = direction::LEFT;
 
     return 1;
 }

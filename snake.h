@@ -21,25 +21,25 @@ public:
 
     int snakeLength;
 
+    bool isSnakeEatTheFood = 0;
+
     int waitTime = 100;
-
-    const int moveUp = 119, moveDown = 115, moveRight = 100, moveLeft = 97;
-
-    int currentDirection = DOWN;
 
     int points = 0;
 
     snake();
 
-    void snakeMove();
-
-    //void snakeControls();
-
-    void gameOverScreen(snake mySnake);
-
-    bool snakeMoving(int keyButton, field &myField);
+    bool snakeMoving(int keyButton, field myField);
 
     ~snake();
+
+private:
+
+    const int moveUp = 119, moveDown = 115, moveRight = 100, moveLeft = 97;
+
+    int currentDirection = DOWN;
+
+    void snakeMove();
 };
 
 #endif // SNAKE_H

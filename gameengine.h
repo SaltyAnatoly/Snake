@@ -11,6 +11,13 @@
 class gameEngine
 {
 public:
+
+    gameEngine();
+
+    void playGame();
+
+private:
+
     int caughtKey;
 
     bool gameOver = 0;
@@ -21,12 +28,7 @@ public:
 
     visual vis;
 
-    gameEngine();
-
-    void startGame();
-
-    void playGame();
-
+    void updateField();
 };
 
 #endif // GAMEENGINE_H

@@ -21,22 +21,22 @@ void visual::gameConsoleOut(snake mySnake, field myField)
     {
         for (int j = 0; j < myField.fieldWidth; j++)
             switch (myField._field[i][j]){
-            case  WALL:
+            case  cell::WALL:
                 std::cout << "#";
                 break;
-            case  BLANK:
+            case  cell::BLANK:
                 std::cout << " ";
                 break;
-            case  SNAKE:
+            case  cell::SNAKE:
                 std::cout << "o";
                 break;
-            case  SNAKE_HEAD:
+            case  cell::SNAKE_HEAD:
                 std::cout << "O";
                 break;
-            case  SNAKE_TALE:
+            case  cell::SNAKE_TALE:
                 std::cout << ".";
                 break;
-            case  FOOD:
+            case  cell::FOOD:
                 std::cout << "*";
                 break;
             }

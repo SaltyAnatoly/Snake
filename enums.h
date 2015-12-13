@@ -12,7 +12,7 @@ enum cell {
 };
 
 enum direction {
-    UP = 0,
+    UP = cell::FOOD + 1,
     DOWN,
     LEFT,
     RIGHT

@@ -23,8 +23,6 @@ public:
 
     void spawnFood();
 
-    cell cellType(int i, int j);
-
     ~field();
 
 };
