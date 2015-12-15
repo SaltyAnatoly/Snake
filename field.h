@@ -6,8 +6,6 @@
 #include <time.h>
 #include <vector>
 
-
-
 class field
 {
 public:
@@ -15,11 +13,13 @@ public:
     int fieldLength;
     int fieldWidth;
 
-    //cell **_field;
+    cell **_field;
 
-    std::vector < std::vector<cell> > _field;
+    //std::vector < std::vector<cell> > _field;
 
     field();
+
+    field (const field &o);
 
     void spawnFood();
 

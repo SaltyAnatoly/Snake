@@ -7,15 +7,16 @@ field::field()
     fieldLength = 20;
     fieldWidth = 40;
 
-    /*
+
     _field = new cell*[fieldLength];
     for (int i = 0; i < fieldLength; i++)
         _field[i] = new cell [fieldWidth];
-        */
 
+/*
     _field.resize(fieldLength);
     for(int i = 0; i < fieldLength; ++i)
         _field[i].resize(fieldWidth);
+        */
 
     for (int i = 0; i < fieldLength; i++)
         for (int j = 0; j < fieldWidth; j++)
@@ -42,6 +43,20 @@ field::field()
     _field[1][1] =  cell::SNAKE;
 }
 
+field::field (const field &o)
+{
+    _field = new cell *[o.fieldLength];
+    for (int i = 0; i < o.fieldLength; i++)
+        _field[i] = new cell [o.fieldWidth];
+
+    for (int i = 0; i < o.fieldLength; i++)
+        for (int j = 0; j < o.fieldWidth; j++)
+            _field[i][j] = o._field[i][j];
+
+    fieldLength = o.fieldLength;
+    fieldWidth = o.fieldWidth;
+}
+
 void field::spawnFood()
 {
     int i;
@@ -58,9 +73,9 @@ void field::spawnFood()
 
 field::~field()
 {
-    /*
+    /**/
     for (int i = 0; i < fieldLength; i++)
         delete [] _field[i];
     delete [] _field;
-    */
+
 }
