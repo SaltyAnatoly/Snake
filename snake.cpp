@@ -21,7 +21,8 @@ void snake::snakeMove()
 
 bool snake::snakeMoving(int keyButton, field myField)
 {
-    if ((keyButton == moveUp || currentDirection == direction::UP) && currentDirection != direction::DOWN)
+    if ((keyButton == moveUp && currentDirection != direction::DOWN) ||
+        (currentDirection == direction::UP && keyButton != moveRight && keyButton != moveLeft))
     {
         if (_snake[0].iCurrentPosition - 1 < 0)
         {
@@ -63,7 +64,8 @@ bool snake::snakeMoving(int keyButton, field myField)
         currentDirection = direction::DOWN;
 
 
-    if ((keyButton == moveDown || currentDirection == direction::DOWN) && currentDirection != direction::UP)
+    if ((keyButton == moveDown && currentDirection != direction::UP) ||
+        (currentDirection == direction::DOWN && keyButton != moveRight && keyButton != moveLeft))
     {
         if (_snake[0].iCurrentPosition + 1 > myField.fieldLength - 1)
         {
